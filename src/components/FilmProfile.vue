@@ -1,5 +1,5 @@
 <template>
-  <div>scheda del film</div>
+  <div></div>
 </template>
 
 <script>
