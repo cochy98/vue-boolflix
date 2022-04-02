@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <!-- Recupero dall'header la ricerca dell'utente -->
-    <Header @userSearch="searchMovie" />
-    <!-- Trasmetto al main la ricerca sopra ottenuta -->
-    <Main :movieToSearch="movieSearched" />
+    <!-- Recupero dall'header tramite '$emit' la lista dei film che sossisfano ricerca dell'utente -->
+    <Header @movieList="searchedMovie" />
+    <!-- Trasmetto al main la lista dei film ricevuta dall'header -->
+    <Main :moviesSearched="movieList" />
   </div>
 </template>
 
@@ -19,16 +19,13 @@ export default {
   },
   data() {
     return {
-      movieSearched: "",
+      movieList: [], // Array che contiene la lista dei film passati da 'Header.vue'
     };
   },
   methods: {
-    searchMovie(searchResult) {
-      console.log(
-        `Comunico al parent App l'utente quale film intende ricercare: ${searchResult}`
-      );
-      // Immagazzino in memoria il risultato della ricerca
-      this.movieSearched = searchResult;
+    // Questa funzione memorizza in una variabile l'array contenente i film che soddisfano la ricerca. Ottenuta tramite una '$emit'
+    searchedMovie(searchResult) {
+      this.movieList = searchResult;
     },
   },
 };

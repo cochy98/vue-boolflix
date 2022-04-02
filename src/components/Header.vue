@@ -1,22 +1,48 @@
 <template>
   <header>
-    <!-- L'utente inserisce un film da ricercare, alla pressione del tasto di invio, viene inviato il risultato della ricerca (inputSearch) sul canale 'userSearch' -->
+    <!-- L'utente inserisce un film da ricercare, all'invio viene richiamato il metodo 'getApiSearchedFilms' che popola la lista dei film in base all'input inserito dall'utente -->
     <input
       type="text"
       placeholder="Inserisci il titolo del film da ricercare"
       v-model="inputSearch"
-      @keyup.enter="$emit('userSearch', inputSearch.trim())"
+      @keyup.enter="getApiSearchedFilms(inputSearch, currentPage)"
     />
   </header>
 </template>
 
 <script>
+/* Importo Axios per gestire la chiamata all'Api */
+import axios from "axios";
 export default {
   name: "IndexHeader",
   data() {
     return {
       inputSearch: "",
+      movieList: [],
+      currentPage: 1,
     };
+  },
+  methods: {
+    /* Effettuo una richiesta GET all'Api ed inserisco i valori nell'array 'movieList'. Lo trasmetto ad 'App.vue' tramite un '$emit' */
+    getApiSearchedFilms(filmToSearch, page) {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/search/movie?api_key=f617480c0a93aca25c95f2b70e2824ca&query=${filmToSearch}&page=${page}`
+        )
+        .then((result) => {
+          // Richiesta andata a buon fine
+          // Inserisco il risultato della ricerca nell'array e stampo un messaggio a video
+          this.movieList = result.data.results;
+          console.log("Recupero la lista dall'API");
+          // Invio l'array ad 'app.vue' sul canale "movieList"
+          this.$emit("movieList", this.movieList);
+        })
+        .catch((error) => {
+          // Errore nella richiesta
+          console.log(error);
+          console.log("errore");
+        });
+    },
   },
 };
 </script>
