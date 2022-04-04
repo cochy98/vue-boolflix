@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <!-- Recupero dall'header tramite '$emit' la lista dei film che sossisfano ricerca dell'utente -->
-    <Header @movieList="searchedMovie" />
+    <Header @movieList="searchedMovie" @TVSeriesList="searchedTVSeries" />
     <!-- Trasmetto al main la lista dei film ricevuta dall'header -->
-    <Main :moviesSearched="movieList" />
+    <Main :moviesSearched="movieList" :seriesSearched="TVSeriesList" />
   </div>
 </template>
 
@@ -20,12 +20,16 @@ export default {
   data() {
     return {
       movieList: [], // Array che contiene la lista dei film passati da 'Header.vue'
+      TVSeriesList: [],
     };
   },
   methods: {
     // Questa funzione memorizza in una variabile l'array contenente i film che soddisfano la ricerca. Ottenuta tramite una '$emit'
     searchedMovie(searchResult) {
       this.movieList = searchResult;
+    },
+    searchedTVSeries(searchResult) {
+      this.TVSeriesList = searchResult;
     },
   },
 };
