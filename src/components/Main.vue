@@ -48,5 +48,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+li {
+  img.my-card-img {
+    width: 200px;
+  }
+}
 </style>

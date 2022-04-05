@@ -36,6 +36,8 @@ export default {
 </script>
 
 <style lang="scss">
+/* Import font-awesome 5 */
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
 /* Importo il mio foglio di stile */
 @import "./assets/scss/style.scss";
 </style>

@@ -1,6 +1,13 @@
 <template>
   <li>
     <ul class="py-4">
+      <li>
+        <img
+          :src="`http://image.tmdb.org/t/p/w500/${serieObject.poster_path}`"
+          :alt="`Image of ${serieObject.name}`"
+          class="my-card-img"
+        />
+      </li>
       <li><span class="fw-bold">Titolo </span>{{ serieObject.name }}</li>
       <li>
         <span class="fw-bold">Titolo Originale </span

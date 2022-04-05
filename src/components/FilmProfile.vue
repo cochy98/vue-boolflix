@@ -1,6 +1,13 @@
 <template>
   <li>
     <ul class="py-4">
+      <li>
+        <img
+          :src="`http://image.tmdb.org/t/p/w500/${movieObject.poster_path}`"
+          :alt="`Image of ${movieObject.title}`"
+          class="my-card-img"
+        />
+      </li>
       <li><span class="fw-bold">Titolo </span>{{ movieObject.title }}</li>
       <li>
         <span class="fw-bold">Titolo Originale </span
@@ -11,6 +18,7 @@
         <lang-flag :iso="movieObject.original_language" />
       </li>
       <li><span class="fw-bold">Voto </span>{{ movieObject.vote_average }}</li>
+      <li><i class="fas fa-star"></i></li>
     </ul>
   </li>
 </template>
