@@ -1,26 +1,31 @@
 <template>
-  <main class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <h3 class="text-center text-danger pt-5">Movie</h3>
-        <ul>
-          <FilmProfileCart
-            v-for="(movie, index) in moviesSearched"
-            :key="index"
-            :movieObject="movie"
-          />
-        </ul>
-      </div>
-      <div class="col-12">
-        <h3 class="text-center text-danger pt-5">TV Series</h3>
-        <ul>
-          <SeriesCart
-            v-for="(serie, index) in seriesSearched"
-            :key="index"
-            :serieObject="serie"
-          />
-        </ul>
-      </div>
+  <main class="container">
+    <div
+      class="
+        row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5
+        g-4
+        py-5
+      "
+    >
+      <FilmProfileCart
+        v-for="(movie, index) in moviesSearched"
+        :key="index"
+        :movieObject="movie"
+      />
+    </div>
+    <h3 class="text-center text-danger pt-5">TV Series</h3>
+    <div
+      class="
+        row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5
+        g-4
+        py-5
+      "
+    >
+      <SeriesCart
+        v-for="(serie, index) in seriesSearched"
+        :key="index"
+        :serieObject="serie"
+      />
     </div>
   </main>
 </template>
@@ -49,17 +54,39 @@ export default {
 </script>
 
 <style lang="scss">
-li {
-  img.my-card-img {
-    width: 200px;
+.card {
+  border: none !important;
+  border-radius: 0 !important;
+
+  img.card-img-top {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 
-  i.fa-star {
-    color: rgb(170, 169, 169);
-  }
+  .my-card-body {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* border: 2px solid red; */
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow-y: auto;
 
-  i.fa-star.voted {
-    color: rgb(255, 222, 35);
+    i.fa-star {
+      color: rgb(170, 169, 169);
+    }
+
+    i.fa-star.voted {
+      color: rgb(255, 222, 35);
+    }
+
+    /* p.my-card-description {
+    } */
   }
+}
+
+.card:hover .my-card-body {
+  display: block;
 }
 </style>

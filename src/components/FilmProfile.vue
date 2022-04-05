@@ -1,23 +1,21 @@
 <template>
-  <li>
-    <ul class="py-4">
-      <li>
-        <img
-          :src="`http://image.tmdb.org/t/p/w500/${movieObject.poster_path}`"
-          :alt="`Image of ${movieObject.title}`"
-          class="my-card-img"
-        />
-      </li>
-      <li><span class="fw-bold">Titolo: </span>{{ movieObject.title }}</li>
-      <li>
-        <span class="fw-bold">Titolo Originale: </span
-        >{{ movieObject.original_title }}
-      </li>
-      <li>
-        <span class="fw-bold">Lingua: </span>
-        <lang-flag :iso="movieObject.original_language" />
-      </li>
-      <li>
+  <div class="col">
+    <div class="card h-100">
+      <img
+        :src="`http://image.tmdb.org/t/p/w500/${movieObject.poster_path}`"
+        :alt="`Image of ${movieObject.title}`"
+        class="card-img-top"
+      />
+      <div class="my-card-body px-2 py-3">
+        <h6><span class="fw-bold">Titolo: </span>{{ movieObject.title }}</h6>
+        <h6>
+          <span class="fw-bold">Titolo Originale: </span
+          >{{ movieObject.original_title }}
+        </h6>
+        <h6>
+          <span class="fw-bold">Lingua: </span>
+          <lang-flag :iso="movieObject.original_language" />
+        </h6>
         <span class="fw-bold">Voto: </span>
         <i
           class="fas fa-star"
@@ -27,9 +25,13 @@
             index < getIntegerVote(movieObject.vote_average) ? 'voted' : ''
           "
         ></i>
-      </li>
-    </ul>
-  </li>
+        <p class="my-card-description">
+          <span class="fw-bold">Overview: </span>
+          {{ movieObject.overview }}
+        </p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
