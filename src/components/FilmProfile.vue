@@ -8,17 +8,26 @@
           class="my-card-img"
         />
       </li>
-      <li><span class="fw-bold">Titolo </span>{{ movieObject.title }}</li>
+      <li><span class="fw-bold">Titolo: </span>{{ movieObject.title }}</li>
       <li>
-        <span class="fw-bold">Titolo Originale </span
+        <span class="fw-bold">Titolo Originale: </span
         >{{ movieObject.original_title }}
       </li>
       <li>
-        <span class="fw-bold">Lingua </span>
+        <span class="fw-bold">Lingua: </span>
         <lang-flag :iso="movieObject.original_language" />
       </li>
-      <li><span class="fw-bold">Voto </span>{{ movieObject.vote_average }}</li>
-      <li><i class="fas fa-star"></i></li>
+      <li>
+        <span class="fw-bold">Voto: </span>
+        <i
+          class="fas fa-star"
+          v-for="(element, index) in 5"
+          :key="index"
+          :class="
+            index < getIntegerVote(movieObject.vote_average) ? 'voted' : ''
+          "
+        ></i>
+      </li>
     </ul>
   </li>
 </template>
@@ -30,7 +39,11 @@ export default {
     return {};
   },
   props: ["movieObject"],
-  methods: {},
+  methods: {
+    getIntegerVote(vote) {
+      return Math.floor(vote / 2);
+    },
+  },
 };
 </script>
 

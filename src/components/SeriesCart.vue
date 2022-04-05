@@ -8,16 +8,26 @@
           class="my-card-img"
         />
       </li>
-      <li><span class="fw-bold">Titolo </span>{{ serieObject.name }}</li>
+      <li><span class="fw-bold">Titolo: </span>{{ serieObject.name }}</li>
       <li>
-        <span class="fw-bold">Titolo Originale </span
+        <span class="fw-bold">Titolo Originale: </span
         >{{ serieObject.original_name }}
       </li>
       <li>
-        <span class="fw-bold">Lingua </span>
+        <span class="fw-bold">Lingua: </span>
         <lang-flag :iso="serieObject.original_language" />
       </li>
-      <li><span class="fw-bold">Voto </span>{{ serieObject.vote_average }}</li>
+      <li>
+        <span class="fw-bold">Voto: </span>
+        <i
+          class="fas fa-star"
+          v-for="(element, index) in 5"
+          :key="index"
+          :class="
+            index < getIntegerVote(serieObject.vote_average) ? 'voted' : ''
+          "
+        ></i>
+      </li>
     </ul>
   </li>
 </template>
@@ -29,7 +39,11 @@ export default {
     return {};
   },
   props: ["serieObject"],
-  methods: {},
+  methods: {
+    getIntegerVote(vote) {
+      return Math.floor(vote / 2);
+    },
+  },
 };
 </script>
 

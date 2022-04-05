@@ -4,7 +4,7 @@
     <input
       type="text"
       placeholder="Inserisci il titolo del film da ricercare"
-      v-model="inputSearch"
+      v-model.trim="inputSearch"
       @keyup.enter="getApiSearchedFilms(myApiKey, inputSearch, currentPage)"
     />
   </header>
@@ -35,7 +35,7 @@ export default {
           // Richiesta andata a buon fine
           // Inserisco il risultato della ricerca nell'array e stampo un messaggio a video
           this.movieList = result.data.results;
-          console.log("Recupero la lista dall'API");
+          console.log("Recupero la lista dei film corrispondenti");
           // Invio l'array ad 'app.vue' sul canale "movieList"
           this.$emit("movieList", this.movieList);
         })
@@ -45,6 +45,7 @@ export default {
           console.log("errore");
         });
       this.getApiSearchedTVSeries(apiKey, search, page);
+      this.inputSearch = "";
     },
     getApiSearchedTVSeries(apiKey, search, page) {
       axios
@@ -55,7 +56,7 @@ export default {
           // Richiesta andata a buon fine
           // Inserisco il risultato della ricerca nell'array e stampo un messaggio a video
           this.TVSeriesList = result.data.results;
-          console.log("Recupero la lista dall'API");
+          console.log("Recupero la lista delle serie TV corrispondenti");
           // Invio l'array ad 'app.vue' sul canale "movieList"
           this.$emit("TVSeriesList", this.TVSeriesList);
         })

@@ -53,5 +53,13 @@ li {
   img.my-card-img {
     width: 200px;
   }
+
+  i.fa-star {
+    color: rgb(170, 169, 169);
+  }
+
+  i.fa-star.voted {
+    color: rgb(255, 222, 35);
+  }
 }
 </style>
