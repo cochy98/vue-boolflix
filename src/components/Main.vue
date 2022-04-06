@@ -75,6 +75,7 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    color: black;
   }
 
   .my-card-body {
@@ -83,7 +84,6 @@ export default {
     top: 0;
     width: 100%;
     height: 100%;
-    /* border: 2px solid red; */
     background-color: rgba(0, 0, 0, 0.8);
     overflow-y: auto;
 
