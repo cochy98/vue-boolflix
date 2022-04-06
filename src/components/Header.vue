@@ -1,12 +1,27 @@
 <template>
   <header>
     <!-- L'utente inserisce un film da ricercare, all'invio viene richiamato il metodo 'getApiSearchedFilms' che popola la lista dei film in base all'input inserito dall'utente -->
-    <input
-      type="text"
-      placeholder="Inserisci il titolo del film da ricercare"
-      v-model.trim="inputSearch"
-      @keyup.enter="getApiSearchedFilms(myApiKey, inputSearch, currentPage)"
-    />
+    <nav class="navbar navbar-light">
+      <div class="container">
+        <a class="navbar-brand">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1280px-Netflix_2015_logo.svg.png"
+            alt="Netflix logo"
+          />
+        </a>
+        <div class="d-flex">
+          <input
+            type="text"
+            class="form-control me-2"
+            placeholder="Search..."
+            v-model.trim="inputSearch"
+            @keyup.enter="
+              getApiSearchedFilms(myApiKey, inputSearch, currentPage)
+            "
+          />
+        </div>
+      </div>
+    </nav>
   </header>
 </template>
 
@@ -38,6 +53,8 @@ export default {
           console.log("Recupero la lista dei film corrispondenti");
           // Invio l'array ad 'app.vue' sul canale "movieList"
           this.$emit("movieList", this.movieList);
+          // Invio il nome della ricerca ad 'app.vue' sul canale "userSearch"
+          this.$emit("userSearch", search);
         })
         .catch((error) => {
           // Errore nella richiesta
@@ -71,8 +88,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-header {
-  height: 100px;
-  background-color: rgb(196, 108, 108);
+nav.navbar {
+  padding: 1rem;
+
+  .navbar-brand > img {
+    width: 150px;
+  }
 }
 </style>

@@ -1,10 +1,16 @@
 <template>
   <main class="container">
+    <div class="row pt-4 pb-2">
+      <div class="col-12">
+        <h2 v-if="userSearch != ''">Risultati per {{ userSearch }}...</h2>
+        <h2 v-else>Ricerca un Film o una Serie TV</h2>
+      </div>
+    </div>
     <div
       class="
         row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5
         g-4
-        py-5
+        pb-5
       "
     >
       <FilmProfileCart
@@ -13,12 +19,16 @@
         :movieObject="movie"
       />
     </div>
-    <h3 class="text-center text-danger pt-5">TV Series</h3>
+    <div class="row pt-1 pb-2" v-show="seriesSearched.length > 0">
+      <div class="col-12">
+        <h2>Serie TV</h2>
+      </div>
+    </div>
     <div
       class="
         row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5
         g-4
-        py-5
+        pb-5
       "
     >
       <SeriesCart
@@ -46,6 +56,7 @@ export default {
     };
   },
   props: {
+    userSearch: String, //Stringa contenente il risultato della ricerca dell'utente
     moviesSearched: Array, //Array con la lista dei film filtrati
     seriesSearched: Array, //Array con la lista delle serie filtrati
   },
@@ -61,6 +72,9 @@ export default {
   img.card-img-top {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .my-card-body {
