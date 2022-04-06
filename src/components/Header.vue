@@ -43,8 +43,11 @@ export default {
     /* Effettuo una richiesta GET all'Api ed inserisco i valori nell'array 'movieList'. Lo trasmetto ad 'App.vue' tramite un '$emit' */
     getApiSearchedFilms(apiKey, search, page) {
       axios
-        .get(
+        /* .get(
           `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}&page=${page}`
+        ) */
+        .get(
+          `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}&language=it-IT&region=IT&page=${page}`
         )
         .then((result) => {
           // Richiesta andata a buon fine
@@ -66,8 +69,11 @@ export default {
     },
     getApiSearchedTVSeries(apiKey, search, page) {
       axios
-        .get(
+        /* .get(
           `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${search}&page=${page}`
+        ) */
+        .get(
+          `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${search}&language=it-IT&region=IT&page=${page}`
         )
         .then((result) => {
           // Richiesta andata a buon fine
@@ -90,7 +96,6 @@ export default {
 <style lang="scss" scoped>
 nav.navbar {
   padding: 1rem;
-
   .navbar-brand > img {
     width: 150px;
   }
