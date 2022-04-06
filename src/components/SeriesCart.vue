@@ -3,7 +3,7 @@
     <div class="card h-100">
       <img
         :src="`http://image.tmdb.org/t/p/w500/${serieObject.poster_path}`"
-        :alt="`Image of ${serieObject.poster_path}`"
+        :alt="`Image of ${serieObject.name}`"
         class="card-img-top"
       />
       <div class="my-card-body px-2 py-3">
